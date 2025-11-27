@@ -26,7 +26,7 @@ The system utilizes a **Sequential Workflow** pattern:
 ## 🚀 How to Run
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/](https://github.com/)[YOUR_USERNAME]/learning-compass-agent.git
+    git clone [https://github.com/](https://github.com/)abhictrl/learning-compass-agent.git
     ```
 2.  Install dependencies:
     ```bash
