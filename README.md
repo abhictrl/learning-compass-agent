@@ -21,7 +21,7 @@ Unlike standard LLM interactions, this system implements **"LLM-as-a-Judge"** ar
 * **⚖️ Structured Evaluation:** The Evaluator outputs strictly typed JSON metrics (`score`, `status`, `reasoning`) for programmatic parsing.
 
 ## 🧩 Architecture Diagram
-![The Learning Compass Architecture](Architecture_Diagram.jpg)
+![The Learning Compass Architecture](Architecture_Diagram.png)
 
 ## 🛠️ Technical Stack
 * **Framework:** Google Agent Development Kit (`google-adk`)
