@@ -1,11 +1,24 @@
-# 🧭 The Learning Compass: Multi-Agent Curriculum Generator
+# 🧭 The Learning Compass: AI-Powered Curriculum Generator
 
-**A sequential multi-agent AI system built with Google's Agent Development Kit (ADK) and Gemini 2.5.**
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Framework](https://img.shields.io/badge/Framework-Google%20ADK-green)
+![Model](https://img.shields.io/badge/Model-Gemini%202.5%20Flash-orange)
+![License](https://img.shields.io/badge/License-MIT-purple)
+
+**A robust multi-agent system that plans, drafts, critiques, and publishes personalized educational content.**
 
 ## 📋 Project Overview
-The Learning Compass is an AI-powered educational tool that orchestrates three specialized agents to generate high-quality, structured learning materials. Unlike a standard chatbot, this system separates concerns (Planning, Content, Evaluation) to ensure structural integrity and hallucination reduction.
+The Learning Compass is not just a chatbot; it is an **agentic pipeline** designed to democratize education. It orchestrates a team of three specialized AI agents to generate high-quality, structured learning materials for any topic and difficulty level.
 
-This project was built as a Capstone for the **Google x Kaggle 5-Day AI Agents Intensive**.
+Unlike standard LLM interactions, this system implements **"LLM-as-a-Judge"** architecture with a **Self-Correction Loop**, ensuring that content is verified for quality before being delivered to the user as a tangible PDF artifact.
+
+## ✨ Key Features
+* **🤖 Multi-Agent Orchestration:** Sequential chain of specialized agents (Planner → Creator → Evaluator).
+* **🛠️ Custom Tool Use:**
+    * `get_syllabus_template`: Enforces pedagogical structure.
+    * `save_lesson_to_pdf`: Generates downloadable PDF course files.
+* **🔄 Self-Correction Loop:** If the Evaluator Agent rejects the content (Score < 4/5), the system automatically routes feedback to the Creator for a rewrite—no human intervention required.
+* **⚖️ Structured Evaluation:** The Evaluator outputs strictly typed JSON metrics (`score`, `status`, `reasoning`) for programmatic parsing.
 
 ## 🧩 Architecture Diagram
 ![The Learning Compass Architecture](Architecture_Diagram.jpg)
@@ -13,6 +26,8 @@ This project was built as a Capstone for the **Google x Kaggle 5-Day AI Agents I
 ## 🛠️ Technical Stack
 * **Framework:** Google Agent Development Kit (`google-adk`)
 * **Model:** Gemini 2.5 Flash Lite
+* **PDF Generation:** fpdf library
+* **Environment:** Python 3.11+ (Compatible with Kaggle/Colab & Local)
 * **Concepts Applied:** Tool Use, Multi-Agent Orchestration, LLM-as-a-Judge, Robust Error Handling.
 
 ## 🚀 How to Run
@@ -31,81 +46,35 @@ This project was built as a Capstone for the **Google x Kaggle 5-Day AI Agents I
 
 ## 📸 Example Output
 
-Here is a complete execution run generating a **Day 1 Lesson for Data Structures and Algorithms (Intermediate)**.
-
-<details>
-<summary><strong>Click to expand the full execution log</strong></summary>
-
-```text
-🏁 Starting Learning Compass for: Data Structures and Algorithms (Intermediate)
+🏁 Starting Learning Compass for: Data Structures (Intermediate)
 
 --- 🤖 PLANNER AGENT WORKING ---
-
-### Created new session: debug_session_id
-
-User > Create a syllabus for 'Data Structures and Algorithms' at Intermediate level.
-
-PlannerAgent > In order to create a syllabus for 'Data Structures and Algorithms' at an 'Intermediate' level, I need to know what topics you'd like to cover. The template provides a structure, but I need the specific content. Can you please provide the topics for each of the 3 days?
+User > Create a syllabus for 'Data Structures' at Intermediate level.
+PlannerAgent > [Generates 3-Day structure covering Trees, Graphs, and Heaps]
 
 --- 🤖 CONTENT AGENT WORKING ---
-
 User > Write the 'Day 1' lesson for this syllabus.
-
-ContentAgent > ## Day 1: Introduction to Data Structures & Algorithmic Thinking
-
-Welcome to Intermediate Data Structures and Algorithms! Today, we'll lay the groundwork for our journey into efficient data organization and problem-solving.
-
-**What are Data Structures?** Think of them as specialized containers for organizing and storing data. The choice of data structure dramatically impacts how efficiently we can access, modify, and process information. We'll explore fundamental structures like **arrays** and **linked lists**, understanding their strengths, weaknesses, and common use cases.
-
-**What is Algorithmic Thinking?** This is the art of breaking down complex problems into a series of well-defined steps, or algorithms. We'll focus on developing your ability to design, analyze, and implement these step-by-step solutions.
-
-**Key Concepts:**
-
-* **Abstract Data Types (ADTs):** A conceptual blueprint for data structures, focusing on operations rather than implementation details.
-* **Time and Space Complexity (Big O Notation):** We'll introduce the crucial concept of analyzing algorithm efficiency. How much time (time complexity) and memory (space complexity) does an algorithm consume as the input size grows?
-
-**Practical Example: Array vs. Linked List Insertion**
-
-Imagine you have a list of items and need to insert a new item at the beginning.
-
-* **Array:** Inserting at the beginning requires shifting all existing elements one position to the right. This can be slow for large arrays.
-* **Linked List:** Inserting at the beginning is incredibly efficient. You just create a new node and point it to the original head.
-
-**Code Snippet (Conceptual Python):**
-
-```python
-# Illustrative, not a full implementation
-
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-class LinkedList:
-    def __init__(self):
-        self.head = None
-
-    def insert_at_beginning(self, new_data):
-        new_node = Node(new_data)
-        new_node.next = self.head
-        self.head = new_node
-
-# Example Usage:
-my_list = LinkedList()
-my_list.insert_at_beginning(10)
-my_list.insert_at_beginning(5)
-# Now, 5 is at the head.
-
-Today is about building intuition and understanding the "why" behind choosing specific data structures and designing efficient algorithms. Get ready to think computationally!
+ContentAgent > [Drafts detailed tutorial on Binary Search Trees with Python code]
 
 --- 🤖 EVALUATOR AGENT WORKING ---
-
 User > Evaluate this lesson content.
-
-EvaluatorAgent >
-
+EvaluatorAgent > 
 {
   "score": 4,
-  "reasoning": "The lesson provides a solid introduction to the core concepts of data structures and algorithmic thinking. It clearly defines what data structures and algorithmic thinking are, introduces important related concepts like ADTs and Big O notation, and illustrates a key difference between arrays and linked lists with a practical example and conceptual code. The content is well-organized and suitable for an introductory lesson.",
+  "reasoning": "The lesson provides a solid introduction to BSTs with clear code examples. Coverage of time complexity is accurate.",
   "status": "PASS"
 }
+
+✅ Quality Check Passed!
+
+--- 💾 SAVING PDF ARTIFACT ---
+System: Successfully generated PDF: Data_Structures_Lesson.pdf
+
+
+## 🔮 Future Improvements
+* **RAG Integration:** Connect the Planner to a Vector Database of university textbooks.
+* **Frontend:** Build a Streamlit UI to move beyond the CLI/Notebook interface.
+* **Multi-Modal:** Allow the Content Agent to generate diagrams/images for the PDF.
+
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
