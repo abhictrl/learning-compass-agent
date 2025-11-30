@@ -8,7 +8,7 @@ The Learning Compass is an AI-powered educational tool that orchestrates three s
 This project was built as a Capstone for the **Google x Kaggle 5-Day AI Agents Intensive**.
 
 ## 🧩 Architecture Diagram
-![The Learning Compass Architecture](architecture_diagram.png)
+![The Learning Compass Architecture](Architecture_Diagram.png)
 
 ## 🛠️ Technical Stack
 * **Framework:** Google Agent Development Kit (`google-adk`)
