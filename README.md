@@ -7,16 +7,8 @@ The Learning Compass is an AI-powered educational tool that orchestrates three s
 
 This project was built as a Capstone for the **Google x Kaggle 5-Day AI Agents Intensive**.
 
-## 🏗️ Architecture
-The system utilizes a **Sequential Workflow** pattern:
-
-1.  **🤖 Planner Agent (The Architect)**
-    * **Role:** Breaks down user topics into a structured 3-day syllabus.
-    * **Tooling:** Uses a custom Python tool (`get_syllabus_template`) to enforce curriculum standards and prevent structural hallucinations.
-2.  **✍️ Content Agent (The Creator)**
-    * **Role:** Takes the structured plan and generates detailed, engaging lesson content for specific modules.
-3.  **⚖️ Evaluator Agent (The Judge)**
-    * **Role:** Implements "LLM-as-a-Judge" to score the generated content on clarity and relevance, ensuring quality control before the user sees the result.
+## 🧩 Architecture Diagram
+![The Learning Compass Architecture](architecture_diagram.png)
 
 ## 🛠️ Technical Stack
 * **Framework:** Google Agent Development Kit (`google-adk`)
